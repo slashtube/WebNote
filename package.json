@@ -1,0 +1,23 @@
+{
+  "name": "webnote",
+  "version": "1.0.0",
+  "description": "webapp application for taking notes",
+  "homepage": "https://github.com/slashtube/WebNote#readme",
+  "bugs": {
+    "url": "https://github.com/slashtube/WebNote/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slashtube/WebNote.git"
+  },
+  "license": "ISC",
+  "author": "slashtube",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "debug": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
