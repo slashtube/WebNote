@@ -1,11 +1,18 @@
-const express = require('express')
-const app = express()
-const port = 3000
+import express from 'express';
+import path from 'path';
+import { addnote } from './routes/addnote.js'
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+// Routes
+app.use(addnote);
+
+app.use(express.static(path.join(import.meta.dirname, "frontend")));
+
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+	console.log(`Example app listening on http://localhost:${port}`);
 })
