@@ -18,4 +18,7 @@ CREATE USER 'your_username'@'localhost' IDENTIFIED BY 'your_password';
 GRANT ALL PRIVILEGES ON WebNoteDB.* TO 'your_username'@'localhost';
 FLUSH PRIVILEGES
 ```
+Now you need to edit the db-example.env file located in the database directory and modify the USERNAME and PASSWORD to match
+the ones you've just created. After that rename the db-example.env to db.env.
+
 

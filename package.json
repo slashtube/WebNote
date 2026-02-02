@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "express": "^5.2.1",
+    "fecha": "^4.2.3",
+    "mariadb": "^3.4.5",
     "tree-sitter-cli": "^0.26.3"
   }
 }
