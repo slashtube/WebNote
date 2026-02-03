@@ -16,8 +16,6 @@ const schema = Joi.object({
 	groupID: Joi.number()
 		.integer()
 		.positive(),
-	content: Joi.string()
-		.max(256),
 });
 
 const addnote = express.Router();
@@ -33,21 +31,17 @@ addnote.post("/addnote", async (req, res) => {
 
 	const { name } = req.body;
 	const { groupID } = req.body;
-	const { content } = req.body;
 
 	// Gets current date
 	const creation = format(Date.now(), 'YYYY-MM-DD HH:mm:ss');
-
 
 	// DB connection
 	let connection;
 	try {
 		connection = await pool.getConnection();
 
-		console.log(creation);
-
 		await connection.query("INSERT INTO Notes (Name, GroupID, Content, Creation, LastModify) VALUES (?, ?, ?, ?, ?)",
-			[name, groupID, content, creation, creation]
+			[name, groupID, null, creation, creation]
 		);
 
 		res.sendStatus(200);
