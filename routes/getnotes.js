@@ -19,10 +19,12 @@ getnotes.get('/getnotes', async (req, res) => {
 	} catch (error) {
 		logger.log('error', error);
 		res.sendStatus(400);
+		return;
 	} finally {
 		if (connection) connection.end();
 	}
 
+	return;
 })
 
 
