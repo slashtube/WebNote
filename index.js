@@ -3,6 +3,7 @@ import path from 'path';
 import { createLogger, transports, format } from 'winston';
 import { addnote } from './routes/addnote.js'
 import { getnotes } from './routes/getnotes.js';
+import { editnote } from './routes/editnote.js';
 import { init_db } from './database/db.js';
 
 // Inits Logger
@@ -31,6 +32,7 @@ app.use(express.json());
 // Routes
 app.use(addnote);
 app.use(getnotes);
+app.use(editnote);
 
 // Render frontend files
 app.use(express.static(path.join(import.meta.dirname, "frontend")));

@@ -1,5 +1,7 @@
 import mariadb from 'mariadb';
 import path from 'path';
+import { logger } from '../index.js';
+
 
 process.loadEnvFile(path.join(import.meta.dirname, 'db.env'));
 
@@ -21,10 +23,10 @@ async function init_db() {
 			file: path.join(import.meta.dirname, 'setup_db.sql')
 		});
 
-		console.log("DB setup successfully!");
+		logger.log('info', 'DB setup successfully!');
 
 	} catch (error) {
-		console.log(error);
+		logger.log('error', error);
 	}
 
 
