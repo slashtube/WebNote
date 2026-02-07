@@ -28,7 +28,7 @@ addgroup.post('/addgroup', async (req, res) => {
 	try {
 		connection = await pool.getConnection();
 
-		connection.query('INSERT INTO Groups (Name) VALUES (?)', name);
+		await connection.query('INSERT INTO Groups (Name) VALUES (?)', name);
 
 		res.sendStatus(200);
 	} catch (error) {

@@ -29,7 +29,7 @@ deletegroup.post('/deletegroup', async (req, res) => {
 
 		connection = await pool.getConnection();
 
-		connection.query('DELETE FROM Groups WHERE Name=(?)', name);
+		await connection.query('DELETE FROM Groups WHERE Name=(?)', name);
 
 		res.sendStatus(200);
 	} catch (error) {

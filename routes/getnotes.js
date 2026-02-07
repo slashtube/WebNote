@@ -12,9 +12,9 @@ getnotes.get('/getnotes', async (req, res) => {
 	try {
 		connection = await pool.getConnection();
 
-		const notes = await connection.query("SELECT * FROM Notes");
+		await connection.query("SELECT * FROM Notes");
 
-		res.status(200).json(notes);
+		res.sendStatus(200);
 
 	} catch (error) {
 		logger.log('error', error);
