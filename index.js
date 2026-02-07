@@ -6,6 +6,7 @@ import { getnotes } from './routes/getnotes.js';
 import { editnote } from './routes/editnote.js';
 import { deletenote } from './routes/deletenote.js';
 import { addgroup } from './routes/addgroup.js';
+import { deletegroup } from './routes/deletegroup.js';
 import { init_db } from './database/db.js';
 
 // Inits Logger
@@ -37,6 +38,7 @@ app.use(getnotes);
 app.use(editnote);
 app.use(deletenote);
 app.use(addgroup);
+app.use(deletegroup);
 
 // Render frontend files
 app.use(express.static(path.join(import.meta.dirname, "frontend")));
