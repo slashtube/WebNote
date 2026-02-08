@@ -2,26 +2,18 @@ import express from 'express';
 import Joi from 'joi';
 import { logger } from '../index.js';
 import { pool } from '../database/db.js';
+import { json_validate } from '../utils.js';
 
-const schema = Joi.object({
+const json_schema = Joi.object({
 	name: Joi.string()
 		.alphanum()
 		.max(32)
 		.required(),
-
 });
 
 const addgroup = express.Router();
 
-addgroup.post('/addgroup', async (req, res) => {
-	const { error } = schema.validate(req.body);
-
-	if (error) {
-		logger.log('error', error);
-		res.sendStatus(400);
-		return;
-	}
-
+addgroup.post('/addgroup', json_validate({ schema: json_schema }), async (req, res) => {
 	const { name } = req.body;
 
 	let connection;

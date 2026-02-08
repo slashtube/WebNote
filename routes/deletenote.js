@@ -3,10 +3,11 @@
 import express from 'express';
 import Joi from 'joi';
 import { pool } from '../database/db.js';
+import { json_validate } from '../utils.js';
 
 const deletenote = express.Router();
 
-const schema = Joi.object({
+const json_schema = Joi.object({
 	id: Joi.number()
 		.positive()
 		.integer()
@@ -14,14 +15,7 @@ const schema = Joi.object({
 
 });
 
-deletenote.post('/deletenote', async (req, res) => {
-
-	const { error } = schema.validate(req.body);
-	if (error) {
-		logger.log('error', error);
-		return;
-	}
-
+deletenote.post('/deletenote', json_validate({ schema: json_schema }), async (req, res) => {
 	const { id } = req.body;
 
 	let connection;

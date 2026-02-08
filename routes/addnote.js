@@ -1,13 +1,14 @@
 'use strict';
 
 import express from 'express';
+import Joi from 'joi';
 import { pool } from '../database/db.js'
 import { format } from 'fecha';
 import { logger } from '../index.js';
-import Joi from 'joi';
+import { json_validate } from '../utils.js';
 
 
-const schema = Joi.object({
+const json_schema = Joi.object({
 	name: Joi.string()
 		.alphanum()
 		.min(1)
@@ -20,15 +21,7 @@ const schema = Joi.object({
 
 const addnote = express.Router();
 
-addnote.post("/addnote", async (req, res) => {
-
-	const { error } = schema.validate(req.body);
-	if (error) {
-		logger.log('error', error);
-		res.sendStatus(400);
-		return;
-	}
-
+addnote.post("/addnote", json_validate({ schema: json_schema }), async (req, res) => {
 	const { name } = req.body;
 	const { groupID } = req.body;
 

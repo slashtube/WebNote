@@ -4,24 +4,17 @@ import express from 'express';
 import Joi from 'joi';
 import { logger } from '../index.js';
 import { pool } from '../database/db.js';
+import { json_validate } from '../utils.js';
 
 const deletegroup = express.Router();
 
-const schema = Joi.object({
+const json_schema = Joi.object({
 	name: Joi.string()
 		.max(32)
 		.required(),
 })
 
-deletegroup.post('/deletegroup', async (req, res) => {
-	const { error } = schema.validate(req.body);
-
-	if (error) {
-		logger.log('error', error);
-		res.sendStatus(400);
-		return;
-	}
-
+deletegroup.post('/deletegroup', json_validate({ schema: json_schema }), async (req, res) => {
 	const { name } = req.body;
 
 	let connection;
