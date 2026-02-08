@@ -1,6 +1,6 @@
 import mariadb from 'mariadb';
 import path from 'path';
-import { logger } from '../index.js';
+import { logger } from '../utils.js';
 
 
 process.loadEnvFile(path.join(import.meta.dirname, 'db.env'));

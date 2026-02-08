@@ -1,6 +1,26 @@
 'use strict'
 
-import { logger } from './index.js';
+/*
+ * Utils source file.
+ * every constant or function here is exported.
+ * */
+
+import { createLogger, transports, format } from 'winston';
+
+// Inits Logger
+// TODO: add logging to file
+export const logger = createLogger({
+	format: format.combine(
+		format.json(),
+		format.splat(),
+		format.simple(), // remove after debugging
+		format.errors({ stack: true }),
+		format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' })
+	),
+	transports: [
+		new transports.Console()
+	]
+})
 
 // Middleware functions called when validating a schema
 export function json_validate(options) {

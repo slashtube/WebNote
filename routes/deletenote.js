@@ -3,7 +3,7 @@
 import express from 'express';
 import Joi from 'joi';
 import { pool } from '../database/db.js';
-import { json_validate } from '../utils.js';
+import { json_validate, logger } from '../utils.js';
 
 const deletenote = express.Router();
 

@@ -4,8 +4,7 @@ import express from 'express';
 import Joi from 'joi';
 import { pool } from '../database/db.js'
 import { format } from 'fecha';
-import { logger } from '../index.js';
-import { json_validate } from '../utils.js';
+import { json_validate, logger } from '../utils.js';
 
 
 const json_schema = Joi.object({
@@ -14,16 +13,16 @@ const json_schema = Joi.object({
 		.min(1)
 		.max(32)
 		.required(),
-	groupID: Joi.number()
-		.integer()
-		.positive(),
+	GroupName: Joi.string()
+		.alphanum()
+		.max(32)
 });
 
 const addnote = express.Router();
 
 addnote.post("/addnote", json_validate({ schema: json_schema }), async (req, res) => {
 	const { name } = req.body;
-	const { groupID } = req.body;
+	const { GroupName } = req.body;
 
 	// Gets current date
 	const creation = format(Date.now(), 'YYYY-MM-DD HH:mm:ss');
@@ -33,8 +32,8 @@ addnote.post("/addnote", json_validate({ schema: json_schema }), async (req, res
 	try {
 		connection = await pool.getConnection();
 
-		await connection.query("INSERT INTO Notes (Name, GroupID, Content, Creation, LastModify) VALUES (?, ?, ?, ?, ?)",
-			[name, groupID, null, creation, creation]
+		await connection.query("INSERT INTO Notes (Name, GroupName, Content, Creation, LastModify) VALUES (?, ?, ?, ?, ?)",
+			[name, GroupName, null, creation, creation]
 		);
 
 		res.sendStatus(200);

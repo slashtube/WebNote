@@ -2,7 +2,7 @@
 
 import express from 'express';
 import { pool } from '../database/db.js'
-import { logger } from '../index.js';
+import { logger } from '../utils.js';
 
 const getnotes = express.Router();
 

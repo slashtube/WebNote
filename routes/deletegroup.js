@@ -2,9 +2,8 @@
 
 import express from 'express';
 import Joi from 'joi';
-import { logger } from '../index.js';
 import { pool } from '../database/db.js';
-import { json_validate } from '../utils.js';
+import { json_validate, logger } from '../utils.js';
 
 const deletegroup = express.Router();
 

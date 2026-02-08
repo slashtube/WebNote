@@ -3,9 +3,8 @@
 import express from 'express';
 import Joi from 'joi';
 import { format } from 'fecha';
-import { logger } from '../index.js';
 import { pool } from '../database/db.js';
-import { json_validate } from '../utils.js';
+import { json_validate, logger } from '../utils.js';
 
 const editnote = express.Router();
 
