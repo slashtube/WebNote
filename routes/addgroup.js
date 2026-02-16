@@ -24,7 +24,7 @@ addgroup.post('/addgroup', json_validate({ schema: json_schema }), async (req, r
 		res.sendStatus(200);
 	} catch (error) {
 		logger.log('error', error);
-		res.sendStatus(400);
+		res.sendStatus(500);
 		return;
 	} finally {
 		if (connection) connection.end();

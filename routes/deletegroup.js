@@ -26,7 +26,7 @@ deletegroup.post('/deletegroup', json_validate({ schema: json_schema }), async (
 		res.sendStatus(200);
 	} catch (error) {
 		logger.log('error', error);
-		res.sendStatus(400);
+		res.sendStatus(500);
 		return;
 	} finally {
 		if (connection) connection.end();

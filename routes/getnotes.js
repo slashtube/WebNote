@@ -12,13 +12,12 @@ getnotes.get('/getnotes', async (req, res) => {
 	try {
 		connection = await pool.getConnection();
 
-		await connection.query("SELECT * FROM Notes");
+		const result = await connection.query("SELECT * FROM Notes");
 
-		res.sendStatus(200);
-
+		res.status(200).json(result);
 	} catch (error) {
 		logger.log('error', error);
-		res.sendStatus(400);
+		res.sendStatus(500);
 		return;
 	} finally {
 		if (connection) connection.end();

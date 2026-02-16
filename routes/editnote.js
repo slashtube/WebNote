@@ -48,7 +48,7 @@ editnote.post("/editnote", json_validate({ schema: json_schema }), async (req, r
 
 	} catch (error) {
 		logger.log('error', error);
-		res.sendStatus(400);
+		res.sendStatus(500);
 		return;
 	} finally {
 		if (connection) connection.end();

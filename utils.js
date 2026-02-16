@@ -22,7 +22,7 @@ export const logger = createLogger({
 	]
 })
 
-// Middleware functions called when validating a schema
+// Middleware function called when validating a schema
 export function json_validate(options) {
 	const { schema } = options
 
@@ -39,3 +39,4 @@ export function json_validate(options) {
 
 	}
 }
+

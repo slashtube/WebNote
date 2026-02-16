@@ -18,7 +18,6 @@ app.use(Object.values(endpoints));
 // Render frontend files
 app.use(express.static(path.join(import.meta.dirname, "frontend")));
 
-
 app.listen(port, () => {
 	logger.log('info', `listening on http://localhost:${port}`);
 })
